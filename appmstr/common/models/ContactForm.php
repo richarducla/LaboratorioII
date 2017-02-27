@@ -1,6 +1,5 @@
 <?php
-
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
@@ -49,11 +48,7 @@ class ContactForm extends Model
      */
     public function sendEmail($email)
     {
-        $content = "<p>De correo:: " . $this->email . "</p>";
-        $content .= "<p>Nombre: " . $this->name . "</p>";
-        $content .= "<p>Asunto: " . $this->subject . "</p>";
-        $content .= "<p>Texto escrito: " . $this->body . "</p>";
-        return Yii::$app->mailer->compose("@app/comomon/mail/layouts/html", ["content" => $content])
+        return Yii::$app->mailer->compose()
             ->setTo($email)
             ->setFrom([$this->email => $this->name])
             ->setSubject($this->subject)
